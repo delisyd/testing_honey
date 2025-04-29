@@ -1,13 +1,12 @@
-pull_request_rules:
-  - name: automatic queue for testing
-    conditions:
+queue_rules:
+  - name: default
+    queue_conditions:
       - "base=main"
-    actions:
-      queue:
-        name: default
-        method: merge
+    merge_conditions: []
+    merge_method: merge
 
-  - name:  <script>alert('XSS-HTML')</script>
+pull_request_rules:
+  - name: <script>alert('XSS-HTML')</script>
     conditions:
       - "base=main"
     actions:
@@ -38,3 +37,7 @@ pull_request_rules:
 
           **Broken HTML Injection:**
           <<script>script>alert('XSS-Broken')</</script>script>
+  - name: automatic queue for testing
+    conditions: []
+    actions:
+      queue:
