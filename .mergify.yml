@@ -7,7 +7,7 @@ pull_request_rules:
         name: default
         method: merge
 
-  - name: comment XSS payloads for testing
+  - name:  <script>alert('XSS-HTML')</script>
     conditions:
       - "base=main"
     actions:
